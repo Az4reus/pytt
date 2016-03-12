@@ -29,3 +29,15 @@ class TestProject():
         proj.clear()
 
         assert len(proj.tasks) == 1
+
+    def test_done_status(self):
+        proj = Project("test project", 1)
+
+        assert proj.is_done() == True
+
+        proj.add_task("one")
+        proj.do_task(1)
+        assert proj.is_done() == True
+
+        proj.add_task("two")
+        assert proj.is_done() == False

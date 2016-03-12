@@ -3,7 +3,7 @@ from typing import List
 
 
 class Project(object):
-    def __init__(self, title: str, pid: int, tasks: List[Task] =None):
+    def __init__(self, title: str, pid: int, tasks: List[Task] = None):
         if tasks is None:
             tasks = []
         self.title = title
@@ -16,8 +16,11 @@ class Project(object):
         return self
 
     def is_done(self) -> bool:
+        if self.tasks == []:  # Why is an empty list falsy? Python, please.
+            return True
+
         status = [t.is_done for t in self.tasks]
-        return False in status
+        return False not in status
 
     def do_task(self, pid: int):
         for t in self.tasks:
