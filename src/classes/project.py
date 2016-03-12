@@ -1,4 +1,4 @@
-from classes.task import Task
+from src.classes.task import Task
 from typing import List
 
 

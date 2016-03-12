@@ -1,10 +1,10 @@
 import json
 from typing import List
 
-from classes.project import Project
-from classes.task import Task
-from serialise import ARCHIVE_LOCATION
-from utils import read_file_lines
+from src.classes.project import Project
+from src.classes.task import Task
+from src.serialise import ARCHIVE_LOCATION
+from src.rutils import read_file_lines
 
 
 def load_archive(path: str) -> List[Project]:

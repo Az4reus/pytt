@@ -1,7 +1,7 @@
 import json
 from typing import List
-from utils import write_file, read_file_lines
-from classes.project import Project
+from src.utils import write_file, read_file_lines
+from src.classes.project import Project
 
 ARCHIVE_LOCATION = "./.archive"
 

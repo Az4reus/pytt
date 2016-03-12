@@ -1,4 +1,4 @@
-from classes.project import *
+from src.classes.project import *
 
 
 class TestProject():
@@ -11,7 +11,7 @@ class TestProject():
 
     def test_deletion(self):
         proj = Project("Test Project", 1)
-        proj.add_task("terrible title")
+        proj.add_task(" terrible title")
         proj.del_task(1)
 
         assert proj.tasks == []
