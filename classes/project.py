@@ -26,6 +26,19 @@ class Project(object):
 
         return self
 
+    def del_task(self, pid) -> Task:
+        for t in self.tasks:
+            if t.pid == pid:
+                self.tasks.remove(t)
+                return t
+
+        raise IndexError
+
+    def clear(self):
+        for t in self.tasks:
+            if t.is_done:
+                self.del_task(t.pid)
+
     def stringify(self) -> str:
         header = "{:03} | {:<70}\n".format(self.pid, self.title)
         separator = '=' * 80 + '\n'
