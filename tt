@@ -7,12 +7,18 @@ from src.serialise import replace_current_project
 
 
 def add_handler(input: str):
-    current_project = get_current_project()
-    current_project.add_task(input)
+    try:
+        current_project = get_current_project()
+        current_project.add_task(input)
 
-    print(current_project.stringify())
+        print(current_project.stringify())
 
-    replace_current_project(current_project)
+        replace_current_project(current_project)
+    except AttributeError:
+        print(
+                "Could not add the task to the project, "
+                "since there are no Projects. \n"
+                "Try creating one with 'tt new'!")
 
 
 def do_handler(input_str):
@@ -55,8 +61,9 @@ def parse_command(argv: str):
     if argv.startswith("list"):
         list_handler()
 
-    # TODO "tt info $pid"
-    # TODO "tt new $name" -> new Project.
+        # TODO "tt info $pid"
+        # TODO "tt new $name" -> new Project.
+
 
 if __name__ == '__main__':
     args = " ".join(sys.argv[1:])

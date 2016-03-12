@@ -13,6 +13,8 @@ def load_archive(path: str = ARCHIVE_LOCATION) -> List[Project]:
 
 
 def reconstruct_project(json_str: str) -> Project:
+    if json_str == "": return
+
     obj = json.loads(json_str)
     return Project(obj['title'], obj['pid'], reconstruct_tasks(obj['tasks']))
 
@@ -27,6 +29,9 @@ def reconstruct_tasks(raw_object) -> list:
 
 
 def get_current_project(path=ARCHIVE_LOCATION) -> Project:
-    with open(path) as f:
-        first_line = f.readline()
-        return reconstruct_project(first_line)
+    try:
+        with open(path) as f:
+            first_line = f.readline()
+            return reconstruct_project(first_line)
+    except FileNotFoundError:
+        return None
