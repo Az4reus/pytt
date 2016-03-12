@@ -7,7 +7,7 @@ from src.serialise import ARCHIVE_LOCATION
 from src.utils import read_file_lines
 
 
-def load_archive(path: str) -> List[Project]:
+def load_archive(path: str = ARCHIVE_LOCATION) -> List[Project]:
     lines = read_file_lines(path)
     return [reconstruct_project(l) for l in lines]
 

@@ -2,7 +2,7 @@
 
 import sys
 
-from src.reconstruct import get_current_project
+from src.reconstruct import get_current_project, load_archive
 from src.serialise import replace_current_project
 
 
@@ -33,6 +33,15 @@ def clear_handler():
     replace_current_project(current_project)
 
 
+def list_handler():
+    projects = load_archive()
+    print("Overview")
+    print(80 * '=')
+
+    for p in projects:
+        print(p.one_line_stringify())
+
+
 def parse_command(argv: str):
     if argv.startswith("add"):
         add_handler(argv[4:])
@@ -43,8 +52,11 @@ def parse_command(argv: str):
     if argv.startswith("clear"):
         clear_handler()
 
-    # TODO "tt list"
+    if argv.startswith("list"):
+        list_handler()
+
     # TODO "tt info $pid"
+    # TODO "tt new $name" -> new Project.
 
 if __name__ == '__main__':
     args = " ".join(sys.argv[1:])

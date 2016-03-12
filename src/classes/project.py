@@ -55,5 +55,26 @@ class Project(object):
 
         return header + separator + body
 
+    def one_line_stringify(self) -> str:
+        return "{:03} | {:<56} | {:02}/{:02} remaining".format(
+            self.pid,
+            self.title,
+            self._tasks_remaining(),
+            self._tasks_total()
+        )
+
+    # Helper functions past here.
+
     def _next_pid(self) -> int:
         return len(self.tasks) + 1
+
+    def _tasks_total(self) -> int:
+        return len(self.tasks)
+
+    def _tasks_remaining(self) -> int:
+        remaining = 0
+        for t in self.tasks:
+            if not t.is_done:
+                remaining += 1
+
+        return remaining
