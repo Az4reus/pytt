@@ -42,6 +42,12 @@ class Project(object):
             if t.is_done:
                 self.del_task(t.pid)
 
+        self.reassign_pids()
+
+    def reassign_pids(self):
+        for index, t in enumerate(self.tasks):
+            t.pid = index + 1
+
     def stringify(self) -> str:
         header = "{:03} | {:<70}\n".format(self.pid, self.title)
         separator = '=' * 80 + '\n'

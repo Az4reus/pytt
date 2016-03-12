@@ -4,7 +4,7 @@ from typing import List
 from src.classes.project import Project
 from src.classes.task import Task
 from src.serialise import ARCHIVE_LOCATION
-from src.rutils import read_file_lines
+from src.utils import read_file_lines
 
 
 def load_archive(path: str) -> List[Project]:

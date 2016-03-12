@@ -1,5 +1,5 @@
 from src.classes.project import *
-
+import pytest
 
 class TestProject():
     def test_doing(self):
@@ -41,3 +41,19 @@ class TestProject():
 
         proj.add_task("two")
         assert proj.is_done() == False
+
+    def test_reassignment(self):
+        proj = Project("test project", 1)
+
+        proj.add_task("one undone")
+        proj.add_task("two done:")
+        proj.add_task("three undone")
+
+        for index, task in enumerate(proj.tasks, 1):
+            assert task.pid == index
+
+        proj.do_task(2)
+        proj.clear()
+
+        for index, task in enumerate(proj.tasks, 1):
+            assert task.pid == index
