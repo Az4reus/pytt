@@ -2,14 +2,20 @@ from typing import List
 
 
 def read_file(path) -> str:
-    with open(path) as f:
-        ret = f.read()
-        return str(ret)
+    try:
+        with open(path) as f:
+            ret = f.read()
+            return str(ret)
+    except FileNotFoundError:
+        return ""
 
 
 def read_file_lines(path) -> List[str]:
-    with open(path) as f:
-        return f.readlines()
+    try:
+        with open(path) as f:
+            return f.readlines()
+    except FileNotFoundError:
+        return []
 
 
 def write_file(path, content) -> None:
