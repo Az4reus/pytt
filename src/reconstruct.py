@@ -13,7 +13,8 @@ def load_archive(path: str = ARCHIVE_LOCATION) -> List[Project]:
 
 
 def reconstruct_project(json_str: str) -> Project:
-    if json_str == "": return
+    if json_str == "":
+        return
 
     obj = json.loads(json_str)
     return Project(obj['title'], obj['pid'], reconstruct_tasks(obj['tasks']))

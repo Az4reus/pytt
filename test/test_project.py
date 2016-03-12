@@ -1,6 +1,7 @@
 from src.classes.project import *
 import pytest
 
+
 class TestProject():
     def test_doing(self):
         proj = Project("Test project", 1)
