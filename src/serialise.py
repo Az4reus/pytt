@@ -33,4 +33,4 @@ def replace_current_project(project: Project,
     block = "\n".join(file_lines[1:])
 
     project = json_serialise(project)
-    write_file(path, project + block)
+    write_file(path, project + '\n' + block)

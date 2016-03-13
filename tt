@@ -3,7 +3,8 @@
 import sys
 
 from src.reconstruct import get_current_project, load_archive
-from src.serialise import replace_current_project
+from src.serialise import replace_current_project, replace_archive
+from src.classes.project import Project
 
 
 def add_handler(input_str: str):
@@ -59,6 +60,19 @@ def info_handler(input_str: str):
         print("No Project or task could be found that matches the parameters.")
 
 
+def new_handler(input_string):
+    all_projects = load_archive()
+    new_pid = len(all_projects) + 1
+
+    new_project = Project(input_string, new_pid)
+
+    print("New Project created!")
+    print(new_project.stringify())
+
+    new_project_list = [new_project] + all_projects
+    replace_archive(new_project_list)
+
+
 def parse_command(argv: str):
     if argv.startswith("add"):
         add_handler(argv[4:])
@@ -75,7 +89,8 @@ def parse_command(argv: str):
     if argv.startswith("info"):
         info_handler(argv[5:])
 
-        # TODO "tt new $name" -> new Project.
+    if argv.startswith("new"):
+        new_handler(argv[4:])
 
 
 if __name__ == '__main__':
