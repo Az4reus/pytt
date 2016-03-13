@@ -6,10 +6,10 @@ from src.reconstruct import get_current_project, load_archive
 from src.serialise import replace_current_project
 
 
-def add_handler(input: str):
+def add_handler(input_str: str):
     try:
         current_project = get_current_project()
-        current_project.add_task(input)
+        current_project.add_task(input_str)
 
         print(current_project.stringify())
 
@@ -48,6 +48,17 @@ def list_handler():
         print(p.one_line_stringify())
 
 
+def info_handler(input_str: str):
+    try:
+        project = get_current_project()
+        pid = int(input_str)
+
+        task = project.tasks[pid - 1]
+        print(task.stringifgy_detail())
+    except AttributeError:
+        print("No Project or task could be found that matches the parameters.")
+
+
 def parse_command(argv: str):
     if argv.startswith("add"):
         add_handler(argv[4:])
@@ -61,7 +72,9 @@ def parse_command(argv: str):
     if argv.startswith("list"):
         list_handler()
 
-        # TODO "tt info $pid"
+    if argv.startswith("info"):
+        info_handler(argv[5:])
+
         # TODO "tt new $name" -> new Project.
 
 

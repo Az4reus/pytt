@@ -19,3 +19,10 @@ class Task(object):
 
         return "{:>03} | {:<68} | {} |"\
             .format(self.pid, self.title, "o" if self.is_done else " ")
+
+    def stringify_info(self):
+        return "#{:03} | {} \n {} \n".format(
+            self.pid,
+            "o" if self.is_done else " ",
+            self.title
+        )

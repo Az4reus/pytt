@@ -1,5 +1,4 @@
-from src.classes.project import *
-import pytest
+from src.classes.project import Project
 
 
 class TestProject():
