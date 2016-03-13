@@ -3,7 +3,8 @@
 import sys
 
 from src.reconstruct import get_current_project, load_archive
-from src.serialise import replace_current_project, replace_archive, make_current_project
+from src.serialise import replace_current_project, replace_archive, \
+    make_current_project
 from src.classes.project import Project
 
 
@@ -81,6 +82,11 @@ def select_handler(input_string):
     print("\nProject selection updated.")
 
 
+def show_project_handler():
+    proj = get_current_project()
+    print(proj.stringify())
+
+
 def parse_command(argv: str):
     if argv.startswith("add"):
         add_handler(argv[4:])
@@ -102,6 +108,9 @@ def parse_command(argv: str):
 
     if argv.startswith("select"):
         select_handler(argv[7:])
+
+    else:
+        show_project_handler()
 
 
 if __name__ == '__main__':
