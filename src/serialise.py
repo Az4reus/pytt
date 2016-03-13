@@ -27,6 +27,22 @@ def _json_default(o):
     return o.__dict__
 
 
+def make_current_project(project_id: int) -> Project:
+    from src.reconstruct import load_archive
+
+    all_projects = load_archive()
+
+    sought_project = None
+    for p in all_projects:
+        if p.pid == project_id:
+            sought_project = p
+
+    all_projects.remove(sought_project)
+    new_projects = [sought_project] + all_projects
+    replace_archive(new_projects)
+    return sought_project
+
+
 def replace_current_project(project: Project,
                             path: str = ARCHIVE_LOCATION) -> None:
     file_lines = read_file_lines(path)
