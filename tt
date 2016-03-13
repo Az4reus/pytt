@@ -56,7 +56,8 @@ def info_handler(input_str: str):
         pid = int(input_str)
 
         task = project.tasks[pid - 1]
-        print(task.stringifgy_detail())
+
+        print(task.stringify_info())
     except AttributeError:
         print("No Project or task could be found that matches the parameters.")
 
@@ -89,28 +90,27 @@ def show_project_handler():
 
 def parse_command(argv: str):
     if argv.startswith("add"):
-        add_handler(argv[4:])
+        return add_handler(argv[4:])
 
     if argv.startswith("do"):
-        do_handler(argv[3:])
+        return do_handler(argv[3:])
 
     if argv.startswith("clear"):
-        clear_handler()
+        return clear_handler()
 
     if argv.startswith("list"):
-        list_handler()
+        return list_handler()
 
     if argv.startswith("info"):
-        info_handler(argv[5:])
+        return info_handler(argv[5:])
 
     if argv.startswith("new"):
-        new_handler(argv[4:])
+        return new_handler(argv[4:])
 
     if argv.startswith("select"):
-        select_handler(argv[7:])
+        return select_handler(argv[7:])
 
-    else:
-        show_project_handler()
+    show_project_handler()
 
 
 if __name__ == '__main__':

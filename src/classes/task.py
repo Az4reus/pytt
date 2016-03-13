@@ -21,8 +21,8 @@ class Task(object):
             .format(self.pid, self.title, "o" if self.is_done else " ")
 
     def stringify_info(self):
-        return "#{:03} | {} \n {} \n".format(
+        return "#{:03} | {} \n\n{} \n".format(
             self.pid,
-            "o" if self.is_done else " ",
+            "Undone" if self.is_done else "Done",
             self.title
         )
